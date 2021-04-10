@@ -1,0 +1,6 @@
+{{ form_start(form) }}
+{{ form_widget(form) }}
+{% if "ROLE_ADMIN" in user.roles  %}
+	<button class="btn btn-success mt-1 mb-1">{{ button_label|default('Guardar') }}</button>
+{% endif %}
+{{ form_end(form) }}

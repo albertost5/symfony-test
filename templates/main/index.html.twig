@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Index - SymfonyTest
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid">
+		<div class="row mt-5 text-center">
+			<h1>Symfony-Test</h1>
+		</div>
+		<div class="row">
+			<div class="col-12 mt-5 text-center">
+				<a class="btn btn-primary" href="{{ path('empresa_index') }}">Index Empresa</a>
+				<a class="btn btn-primary" href="{{ path('sector_index') }}">Index Sector</a>
+			</div>
+		</div>
+	</div>
+{% endblock %}

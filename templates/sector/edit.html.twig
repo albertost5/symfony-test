@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar Sector
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row mt-5">
+			<div class="col-3"></div>
+			<div class="col-6">
+				<h1>Editar Sector</h1>
+			</div>
+			<div class="col-3"></div>
+		</div>
+		<div class="row">
+			<div class="col-3"></div>
+			<div class="col-6">
+				{{ include('sector/_form.html.twig', {'button_label': 'Editar'}) }}
+				<a class="btn btn-danger mt-1" href="{{ path('sector_index') }}">Cancelar</a>
+			</div>
+			<div class="col-3"></div>
+		</div>
+	</div>
+{% endblock %}

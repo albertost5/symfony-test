@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sector index
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid">
+		<h1>Sector index</h1>
+
+		<table class="table table-dark text-center">
+			<thead>
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Nombre</th>
+					<th scope="col">Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for sector in sectores %}
+					<tr>
+						<td>{{ sector.id }}</td>
+						<td>{{ sector.nombre }}</td>
+						<td>
+							{% if "ROLE_ADMIN" in user.roles  %}
+								<a class="btn btn-warning btn-sm" href="{{ path('sector_edit', {'id': sector.id}) }}">Editar</a>
+								<a class="btn btn-danger btn-sm" href="{{ path('sector_delete', {'id': sector.id}) }}">Eliminar</a>
+							{% endif %}
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="5">No hay registros.</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<div class="navigation">
+			{{ knp_pagination_render(sectores) }}
+		</div>
+		{% if "ROLE_ADMIN" in user.roles  %}
+			<a class="btn btn-primary" href="{{ path('sector_new') }}">Crear Nueva</a>
+		{% endif %}
+		<a class="btn btn-primary" href="{{ path('main') }}">Volver</a>
+	</div>
+{% endblock %}

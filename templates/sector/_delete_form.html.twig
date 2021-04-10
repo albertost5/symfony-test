@@ -1,0 +1,8 @@
+<form method="post" action="{{ path('sector_delete', {'id': sector.id}) }}" onsubmit="return confirm('¿Estás seguro de que quieres borrar este sector?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ sector.id) }}">
+    {% if count <= 0 and "ROLE_ADMIN" in user.roles %}
+        <button class="btn btn-danger">Borrar</button>
+    {% else %}
+        <p><b>Parar borrar este sector es necesario que ninguna empresa pertenezca a él. Actualmente lo poseen <mark>{{ count }}</mark> empresas.</b></p>
+    {% endif %}
+</form>

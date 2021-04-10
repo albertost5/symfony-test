@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Sector
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row mt-5">
+			<div class="col-3"></div>
+			<div class="col-6">
+				<h1>Crear nuevo Sector</h1>
+			</div>
+			<div class="col-3"></div>
+		</div>
+		<div class="row">
+			<div class="col-3"></div>
+			<div class="col-6">
+
+				{{ include('sector/_form.html.twig') }}
+
+				<a class="btn btn-primary"  href="{{ path('sector_index') }}">Volver</a>
+			</div>
+			<div class="col-3"></div>
+		</div>
+	</div>
+{% endblock %}

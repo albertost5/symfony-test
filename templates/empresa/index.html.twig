@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Empresa index
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid">
+		<h1>Empresa index</h1>
+
+
+		<table class="table table-dark text-center">
+			<thead>
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Nombre</th>
+					<th scope="col">Telefono</th>
+					<th scope="col">Email</th>
+					<th scope="col">Sector</th>
+					<th scope="col">Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for empresa in empresas %}
+					<tr>
+						<td>{{ empresa.id }}</td>
+						<td>{{ empresa.nombre }}</td>
+						<td>{{ empresa.telefono }}</td>
+						<td>{{ empresa.email }}</td>
+						<td>{{ empresa.sector }}</td>
+						<td>
+							{% if "ROLE_ADMIN" in user.roles  %}
+								<a class="btn btn-warning btn-sm" href="{{ path('empresa_edit', {'id': empresa.id}) }}">Editar</a>
+								<a class="btn btn-danger btn-sm" href="{{ path('empresa_delete', {'id': empresa.id}) }}">Eliminar</a>
+							{% endif %}
+						</td>
+					</tr>
+
+				{% else %}
+					<tr>
+						<td colspan="5">No hay registros.</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</tbody>
+	</table>
+
+	<div class="navigation">
+		{{ knp_pagination_render(empresas) }}
+	</div>
+	{% if "ROLE_ADMIN" in user.roles  %}
+		<a class="btn btn-primary" href="{{ path('empresa_new') }}">Crear Nueva</a>
+	{% endif %}
+	<a class="btn btn-primary" href="{{ path('main') }}">Volver</a>
+
+	<br/>
+	<br/>
+	<br/>
+
+	<form name="buscar_empresa_sector" method="post" action="{{ path('buscar') }}">
+		<div class="form-group">
+			<div class="row mt-5">
+				<div class="col-2 col-sm-2 col-md-4 col-lg-4"></div>
+				<div class="col-8 col-sm-8 col-md-4 col-lg-4">
+					<label for="nombre">Nombre Empresa</label>
+					<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre de la empresa..">
+				</div>
+				<div class="col-2 col-sm-2 col-md-4 col-lg-4"></div>
+			</div>
+
+			<div class="row mt-1">
+				<div class="col-2 col-sm-2 col-md-4 col-lg-4"></div>
+				<div class="col-8 col-sm-8 col-md-4 col-lg-4">
+					<select class="form-select" aria-label="Default select example" id="sector" name="sector">
+						<option selected>Open this select menu</option>
+
+						{% for s in sectores %}
+							<option value={{ s.id }}>{{ s.nombre }}</option>
+						{% endfor %}
+
+					</select>
+				</div>
+				<div class="col-2 col-sm-2 col-md-4 col-lg-4"></div>
+			</div>
+
+			<div class="row mt-1">
+				<div class="col-2 col-sm-2 col-md-4 col-lg-4"></div>
+				<div class="col-8 col-sm-8 col-md-4 col-lg-4">
+					<button type="submit" class="btn btn-primary">Buscar</button>
+				</div>
+				<div class="col-2 col-sm-2 col-md-4 col-lg-4"></div>
+			</div>
+
+
+		</form>
+
+	</div>
+
+
+{% endblock %}

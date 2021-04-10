@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nueva Empresa
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row mt-5">
+			<div class="col-3"></div>
+			<div class="col-6">
+				<h1>Crear nueva Empresa</h1>
+			</div>
+			<div class="col-3"></div>
+		</div>
+		<div class="row">
+			<div class="col-3"></div>
+			<div class="col-6">
+				{{ include('empresa/_form.html.twig') }}
+				<a class="btn btn-primary" href="{{ path('empresa_index') }}">Volver</a>
+			</div>
+			<div class="col-3"></div>
+		</div>
+	</div>
+{% endblock %}
